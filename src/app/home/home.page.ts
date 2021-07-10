@@ -22,8 +22,9 @@ export class HomePage {
 
     await modal.present();
     
-    modal.onWillDismiss().then((dados: any) => {
-      console.log(dados);
+    modal.onWillDismiss().then((novoLogin: any) => {
+      this.nome = novoLogin.data.novoNome;
+      this.cpf = novoLogin.data.novoCPF;
     });
 
     

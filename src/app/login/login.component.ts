@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
@@ -8,6 +8,9 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  @Input() antNome: String;
+  @Input() antCpf: Number;
+
   entNome = new FormControl('', Validators.required);
   entCPF = new FormControl('', Validators.required);
   constructor(private modalCrtl: ModalController) { }
