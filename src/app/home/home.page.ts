@@ -1,7 +1,7 @@
-import { stringify } from '@angular/compiler/src/util';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
+import { db } from '../../assets/db';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +11,14 @@ import { LoginComponent } from '../login/login.component';
 export class HomePage {
 
   constructor(private ModalCtrl: ModalController) {}
-  cpf="0"
-  nome="Zezinho da pá"
+  cpf="0";
+  nome="Zezinho da pá";
+  dados: any;
+
+  ngOnInit(){
+    this.dados = db;
+    console.log(this.dados);
+  }
 
   async login() {
     const modal = await this.ModalCtrl.create({
@@ -25,6 +31,7 @@ export class HomePage {
     modal.onWillDismiss().then((novoLogin: any) => {
       this.nome = novoLogin.data.novoNome;
       this.cpf = novoLogin.data.novoCPF;
+
     });
 
     
