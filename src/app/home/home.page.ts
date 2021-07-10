@@ -1,4 +1,7 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,23 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private ModalCtrl: ModalController) {}
+  cpf="0"
+  nome="Zezinho da pá"
+
+  async login() {
+    const modal = await this.ModalCtrl.create({
+      component: LoginComponent,
+      componentProps: {antNome: this.nome, antCpf: this.cpf }
+    });
+
+    await modal.present();
+    
+    modal.onWillDismiss().then((dados: any) => {
+      console.log(dados);
+    });
+
+    
+  };
 
 }

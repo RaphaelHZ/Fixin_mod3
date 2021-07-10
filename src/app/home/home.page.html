@@ -1,15 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      <ion-button><ion-icon name="star"></ion-icon></ion-button>
-      <ion-label style="align-content: center;">aqui vai o nome</ion-label>
+    <ion-title slot="end">
+      <ion-item>
+        <ion-label style="align-content: center;font-size: small;vertical-align: bottom;" size="small">{{nome}}</ion-label>
+        <ion-icon name="person-circle-outline" button (click)="login()"></ion-icon>
+      </ion-item>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-label style="font-family:'Gill Sans';font-size: xx-large;">FixIn</ion-label>
+    <br><br><br><br>
+    <ion-label style="font-family:'Gill Sans';font-size: large;">Seja bem vindo</ion-label>
+    <br><br><br>
+    <ion-button [routerLink]="['/busca']" style="width: 90%;">Encontrar Profissionais</ion-button>
+    <br><br>
+    <ion-button [routerLink]="['/cadastro']" style="width: 90%;">Cadastrar meus serviços</ion-button>
   </div>
 </ion-content>

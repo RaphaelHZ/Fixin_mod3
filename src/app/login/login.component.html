@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharLogin()">Fechar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nome:</ion-label>
+    <ion-input [formControl]="entNome"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">CPF:</ion-label>
+    <ion-input [formControl]="entCPF" type="number"></ion-input>
+  </ion-item>
+  <ion-button [disabled]="entCPF.invalid" expand="block" (click)="salvarLogin()">Salvar</ion-button>
+</ion-content>
