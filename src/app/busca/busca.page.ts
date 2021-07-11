@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ResultadosComponent } from '../resultados/resultados.component';
+import { NavigationExtras } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { ResultPage } from '../result/result.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-busca',
@@ -9,7 +11,7 @@ import { ResultadosComponent } from '../resultados/resultados.component';
 })
 export class BuscaPage implements OnInit {
 
-  constructor(private ModalCtrl: ModalController) { }
+  constructor(public router: Router) { }
   dados: any;
   local: String;
   servico: String;
@@ -17,13 +19,9 @@ export class BuscaPage implements OnInit {
   ngOnInit() {
   }
 
-  async buscar() {
-    const modal = await this.ModalCtrl.create({
-      component: ResultadosComponent,
-      componentProps: {escolhaLocal: this.local, escolhaServico: this.servico, escolhaDados: this.dados }
-    });
-
-    await modal.present();
-  };
+  buscar() {
+    var parametros: any = {escolhaLocal: this.local, escolhaServico: this.servico};
+    this.router.navigate(['/ResultPage'], {queryParams: parametros})
+  }  
 
 }
