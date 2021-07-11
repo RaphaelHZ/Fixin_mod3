@@ -5,9 +5,29 @@
 </ion-header>
 
 <ion-content>
-  <ion-label>Cadastro</ion-label>
-  <br>
-  <ion-button [routerLink]="['/cadastro']">Salvar</ion-button>
-  <br>
-  <ion-button [routerLink]="['/home']">Voltar</ion-button>
+  <div id="container">
+    <ion-item>
+      <ion-label position="floating">Nome:</ion-label>
+      <ion-input (click)="this.antNome=''">{{antNome}}</ion-input>
+    </ion-item>
+    <br>
+    cpf:  
+sobrenome: 
+nomeFantasia: 
+telefone: 
+descrServicos: 
+formaPagamento:
+tags: 
+nomeCadastroEndereco:
+numeroCep: 
+nomeRua: 
+numeroEndereco: 
+complemento: 
+bairro: 
+cidade: 
+estado: 
+    <ion-button (click)="salvar()")>Salvar</ion-button>
+    <br>
+    <ion-button [routerLink]="['/home']">Voltar</ion-button>
+  </div>
 </ion-content>
