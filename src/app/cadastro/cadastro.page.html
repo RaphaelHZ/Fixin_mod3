@@ -11,23 +11,73 @@
       <ion-input (click)="this.antNome=''">{{antNome}}</ion-input>
     </ion-item>
     <br>
-    cpf:  
-sobrenome: 
-nomeFantasia: 
-telefone: 
-descrServicos: 
-formaPagamento:
-tags: 
-nomeCadastroEndereco:
-numeroCep: 
-nomeRua: 
-numeroEndereco: 
-complemento: 
-bairro: 
-cidade: 
-estado: 
-    <ion-button (click)="salvar()")>Salvar</ion-button>
+    <ion-item>
+      <ion-label position="floating">Nome fantasia:</ion-label>
+      <ion-input (click)="this.antNomeFantasia=''">{{antNomeFantasia}}</ion-input>
+    </ion-item>
     <br>
-    <ion-button [routerLink]="['/home']">Voltar</ion-button>
+    <ion-item>
+      <ion-label position="floating">Telefone:</ion-label>
+      <ion-input (click)="this.antTelefone=''">{{antTelefone}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Descrição Endereço:</ion-label>
+      <ion-input (click)="this.antNomeCadastroEndereco=''">{{antNomeCadastroEndereco}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">CEP:</ion-label>
+      <ion-input (click)="this.antNumeroCep=''">{{antNumeroCep}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Rua:</ion-label>
+      <ion-input (click)="this.antNomeRua=''">{{antNomeRua}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Número:</ion-label>
+      <ion-input (click)="this.antNumeroEndereco=''">{{antNumeroEndereco}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Bairro:</ion-label>
+      <ion-input (click)="this.antBairro=''">{{antBairro}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Cidade:</ion-label>
+      <ion-input (click)="this.antCidade=''">{{antCidade}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Estado:</ion-label>
+      <ion-input (click)="this.antEstado=''">{{antEstado}}</ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-list>
+        <ion-label position="floating">Formas de Pagamento:</ion-label>
+        <ion-item *ngFor="let item of listaPagto">
+          <ion-label>{{item.pagto}}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <br>
+     <ion-item>
+      <ion-list>
+        <ion-label position="floating">Serviços:</ion-label>
+        <ion-item *ngFor="let item of listaServicos">
+          <ion-label>{{item.serv}}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <br><br>
+    <ion-button (click)="salvar()" style="width: 90%;">Salvar</ion-button>
+    <br>
+    <ion-button [routerLink]="['/home']" style="width: 90%;">Voltar</ion-button>
   </div>
 </ion-content>
