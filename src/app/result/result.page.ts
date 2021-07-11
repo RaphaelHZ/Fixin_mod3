@@ -8,6 +8,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ResultPage implements OnInit {
   dados: any;
+  escolhaLocal: any;
+  escolhaServico: any;
 
   constructor(private route: ActivatedRoute) { }
   
@@ -23,4 +25,5 @@ export class ResultPage implements OnInit {
     this.dados = json;
     });
   }
+
 }

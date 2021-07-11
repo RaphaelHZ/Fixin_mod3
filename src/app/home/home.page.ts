@@ -11,7 +11,7 @@ export class HomePage {
 
   constructor(private ModalCtrl: ModalController) {}
   cpf="0";
-  nome="Zezinho da pá";
+  nome="José Silva";
   dados: any;
 
   ngOnInit(){
