@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { db } from '../../assets/db';
 
 @Component({
   selector: 'app-result',
@@ -8,7 +7,7 @@ import { db } from '../../assets/db';
   styleUrls: ['./result.page.scss'],
 })
 export class ResultPage implements OnInit {
-  dados: any = db.bddados;
+  dados: any;
 
   constructor(private route: ActivatedRoute) { }
   
@@ -16,6 +15,12 @@ export class ResultPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       let escolhaLocal = params["escolhaLocal"];
       let escolhaServico = params["escolhaServico"];
+      console.log(escolhaLocal);
+      console.log(escolhaServico);
+    });
+    fetch('./assets/db.json').then(res => res.json())
+    .then(json => {
+    this.dados = json;
     });
   }
 }

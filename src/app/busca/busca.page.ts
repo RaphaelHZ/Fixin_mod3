@@ -25,10 +25,8 @@ export class BuscaPage implements OnInit {
   }
 
   buscar() {
-    console.log(this.local);
-    console.log(this.servico);
     var parametros: any = {escolhaLocal: this.local, escolhaServico: this.servico};
-    this.router.navigate(['./ResultPage'], {queryParams: parametros});
+    this.router.navigate(['./result'], {queryParams: parametros});
   }  
 
 }
