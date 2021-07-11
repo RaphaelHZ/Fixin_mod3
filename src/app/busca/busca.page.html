@@ -5,9 +5,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-label>Buscar</ion-label>
-  <br>
-  <ion-button [routerLink]="['/busca']" (click)="buscar()">Buscar</ion-button>
-  <br>
-  <ion-button [routerLink]="['/home']">Voltar</ion-button>
+  <div id="container">
+    <br><br><br><br>
+    <ion-item>
+      <ion-label>Serviço:</ion-label>
+      <ion-select interface="popover" [(ngModel)]="servico">
+        <ion-select-option *ngFor='let serv of servicos'>{{serv}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label>Local:</ion-label>
+      <ion-select interface="popover" [(ngModel)]="local">
+        <ion-select-option *ngFor='let loc of locais'>{{loc}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-button (click)="buscar()" style="width: 90%;">Buscar</ion-button>
+    <br><br>
+    <ion-button [routerLink]="['/home']" style="width: 90%;">Voltar</ion-button>
+  </div>
 </ion-content>

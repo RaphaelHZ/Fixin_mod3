@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { ResultPage } from '../result/result.page';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,18 +7,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./busca.page.scss'],
 })
 export class BuscaPage implements OnInit {
-
-  constructor(public router: Router) { }
+  private local;
+  private servico;
+  constructor(public router: Router) {
+    
+  }
   dados: any;
-  local: String;
-  servico: String;
+  locais: any = ["Rolândia","Londrina","Cambé","Ibiporã","Maringá"];
+  servicos: any = ["Acabamentos","Arquiteto(a)","Automação Residencial","Azulejista","Carpintaria",
+                  "Decoração","Elétrica","Engenheiro(a) Civil","Gesso e Dry Wall","Hidráulica",
+                  "Infraestrutura","Jardinagem","Marmoraria","Movelaria","Pintura",
+                  "Revestimentos","Serralheria","Vidraçaria"
+                  ];
+
 
   ngOnInit() {
   }
 
   buscar() {
+    console.log(this.local);
+    console.log(this.servico);
     var parametros: any = {escolhaLocal: this.local, escolhaServico: this.servico};
-    this.router.navigate(['/ResultPage'], {queryParams: parametros})
+    this.router.navigate(['./ResultPage'], {queryParams: parametros});
   }  
 
 }
