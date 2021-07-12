@@ -76,8 +76,13 @@
       </ion-list>
     </ion-item>
     <br><br>
-    <ion-button (click)="salvar()" style="width: 90%">Salvar</ion-button>
-    <br>
-    <ion-button [routerLink]="['/home']" style="width: 90%">Voltar</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="salvar()" expand="block" style="width: 90%">Salvar</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button [routerLink]="['/home']" expand="block" style="width: 90%">Voltar</ion-button>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>
