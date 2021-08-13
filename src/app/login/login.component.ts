@@ -23,4 +23,20 @@ export class LoginComponent {
     let novoLogin = {"novoNome": this.entNome.value, "novoCPF": this.entCPF.value};
     this.modalCrtl.dismiss(novoLogin);
   }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log(this.myForm.value);
+    let dataUrl = "https://fixin-unifil.herokuapp.com/login";
+    this.http.post(dataUrl, this.myForm.value).subscribe({
+      next: data => {
+        console.log(data);
+        console.log('Login Criado!');
+      },
+      error: error => {
+        this.errorMessage = error.message;
+        console.error('There was an error!', this.errorMessage);
+      }      
+    });      
+  }
 }
