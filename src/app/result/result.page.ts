@@ -8,22 +8,19 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ResultPage implements OnInit {
   dados: any;
-  escolhaLocal: any;
-  escolhaServico: any;
 
   constructor(private route: ActivatedRoute) { }
   
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      let escolhaLocal = params["escolhaLocal"];
-      let escolhaServico = params["escolhaServico"];
-      console.log(escolhaLocal);
-      console.log(escolhaServico);
+      let dados = params["dados"];
+      console.log(dados);
     });
-    fetch('./assets/db.json').then(res => res.json())
+
+
+    fetch(this.dados).then(res => res.json())
     .then(json => {
     this.dados = json;
     });
   }
-
 }
