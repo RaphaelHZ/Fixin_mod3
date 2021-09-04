@@ -58,7 +58,7 @@ export class BuscaPage {
 
   submit() {
       console.log(this.myForm.value);
-      /* let dataUrl = "http://localhost:5000/resultado";
+      let dataUrl = "https://fixin-unifil.herokuapp.com/resultado";
       this.http.get(dataUrl, this.myForm.value).subscribe({
         next: data => {
           console.log(data);
@@ -70,6 +70,6 @@ export class BuscaPage {
           this.errorMessage = error.message;
           console.error('Houve um erro!', this.errorMessage);
         }      
-      });   */    
+      });  
   }
 }
