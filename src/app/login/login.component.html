@@ -9,64 +9,15 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
-    <ion-item>
-      <ion-label position="floating">Nome:</ion-label>
-      <ion-input formControlName="entNome" (click)="this.antNome=''">{{antNome}}</ion-input>
-    </ion-item>
+  <form [formGroup]="formLogin" (ngSubmit)="salvarLogin()" novalidate>
     <ion-item>
       <ion-label position="floating">CPF:</ion-label>
-      <ion-input formControlName="entCPF" type="number" (click)="this.antCpf=''">{{antCpf}}</ion-input>
+      <ion-input formControlName="logCpf" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Senha:</ion-label>
+      <ion-input formControlName="logId"></ion-input>
     </ion-item>
     <ion-button type="submit" expand="block">Salvar</ion-button>
   </form>
 </ion-content>
-
-
-
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>Books</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content [fullscreen]="true">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
-    <ion-item lines="full">
-      <ion-label position="floating">Title</ion-label>
-      <ion-input formControlName="title" type="text"></ion-input>
-    </ion-item>
-    <span class="error ion-padding" *ngIf="submitted && errorCtr.title.errors?.required">
-      Title is required.
-    </span>
-    <span class="error ion-padding" *ngIf="submitted && errorCtr.title.errors?.minlength">
-      Min 3 chars long.
-    </span>    
-    <ion-item lines="full">
-      <ion-label position="floating">Author</ion-label>
-      <ion-input formControlName="author" type="text"></ion-input>
-    </ion-item>
-    <span class="error ion-padding" *ngIf="submitted && errorCtr.author.errors?.required">
-      Author is required.
-    </span>
-    <span class="error ion-padding" *ngIf="submitted && errorCtr.author.errors?.minlength">
-      Min 3 chars long.
-    </span>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Create Book</ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
-  <ion-list no-lines>
-    <ion-item  *ngFor="let tms of books;" >
-    <div>{{ tms.title }} {{ tms.primary_author }}</div>
-    </ion-item>
-  </ion-list>
-
-</ion-content>
-<ion-footer>
-  <ion-button (click)="loadBooks()" color="primary">Load Books</ion-button>
-  <ion-button (click)="cleanBooks()" color="success">Reset Books</ion-button>
-  <ion-button [routerLink]="['/']">Mapa</ion-button>
-</ion-footer>
- -->

@@ -1,0 +1,22 @@
+div {
+/*     text-align: center;
+    left: 0;
+    right: 0;
+    align-content: center;
+    display: block;
+    justify-content: center; */
+    /* margin: 0 auto; */
+}
+
+.cssHome{
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    align-content: center;
+    display: block;
+    justify-content: center;
+    margin: 0 auto;
+}

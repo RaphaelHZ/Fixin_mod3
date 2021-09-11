@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -14,7 +15,8 @@ import { LoginComponent } from '../login/login.component';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    HttpModule
   ],
   declarations: [HomePage, LoginComponent],
   entryComponents: [LoginComponent]

@@ -10,13 +10,150 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="container">
+  <div class="cssHome" id="divHome">
     <ion-label style="font-family:'Gill Sans';font-size: xx-large;">FixIn</ion-label>
     <br><br><br><br>
     <ion-label style="font-family:'Gill Sans';font-size: large;">Seja bem vindo</ion-label>
     <br><br><br>
-    <ion-button [routerLink]="['/busca']" style="width: 90%;">Encontrar Profissionais</ion-button>
+    <ion-button style="width: 90%;" (click)="divBuscaShow()">Encontrar Profissionais</ion-button>
     <br><br>
-    <ion-button [routerLink]="['/cadastro']" style="width: 90%;">Cadastrar meus serviços</ion-button>
+    <ion-button style="width: 90%;" (click)="divCadastroShow()">Cadastrar meus serviços</ion-button>
   </div>
+
+  <div class="cssBusca" id="divBusca" [hidden]="true">
+    <form [formGroup]="formBusca" (ngSubmit)="buscar()">
+      <br><br><br><br>
+      <ion-item>
+        <ion-label>Serviço:</ion-label>
+        <ion-select interface="popover" formControlName="servico" placeholder="Selecione">
+          <ion-select-option value="servacab">Acabamentos</ion-select-option>
+          <ion-select-option value="servarqt">Arquiteto(a)</ion-select-option>
+          <ion-select-option value="servautr">Automação Residencial</ion-select-option>
+          <ion-select-option value="servazul">Azulejista</ion-select-option>
+          <ion-select-option value="servcarp">Carpintaria</ion-select-option>
+          <ion-select-option value="servdeco">Decoração</ion-select-option>
+          <ion-select-option value="servelet">Elétrica</ion-select-option>
+          <ion-select-option value="servenge">Engenheiro(a) Civil</ion-select-option>
+          <ion-select-option value="servgess">Gesso e Dry Wall</ion-select-option>
+          <ion-select-option value="servhidr">Hidráulica</ion-select-option>
+          <ion-select-option value="servinfr">Infraestrutura</ion-select-option>
+          <ion-select-option value="servjard">Jardinagem</ion-select-option>
+          <ion-select-option value="servmarm">Marmoraria</ion-select-option>
+          <ion-select-option value="servmovl">Movelaria</ion-select-option>
+          <ion-select-option value="servpint">Pintura</ion-select-option>
+          <ion-select-option value="servrevs">Revestimentos</ion-select-option>
+          <ion-select-option value="servserr">Serralheria</ion-select-option>
+          <ion-select-option value="servvidr">Vidraçaria</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Local:</ion-label>
+        <ion-select interface="popover" formControlName="local" placeholder="Selecione">
+          <ion-select-option value="Rolandia">Rolândia</ion-select-option>
+          <ion-select-option value="Londrina">Londrina</ion-select-option>
+          <ion-select-option value="Cambe">Cambé</ion-select-option>
+          <ion-select-option value="Ibipora">Ibiporã</ion-select-option>
+          <ion-select-option value="Maringa">Maringá</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label>Forma de Pagamento:</ion-label>
+        <ion-select interface="popover" formControlName="pagto" placeholder="Selecione">
+          <ion-select-option value="pagtocc">Cartão Crédito</ion-select-option>
+          <ion-select-option value="pagtocd">Cartão Débito</ion-select-option>
+          <ion-select-option value="pagtotr">Transferência</ion-select-option>
+          <ion-select-option value="pagtocq">Cheque</ion-select-option>
+          <ion-select-option value="pagtopx">PIX</ion-select-option>
+          <ion-select-option value="pagtobt">Boleto</ion-select-option>
+          <ion-select-option value="pagtodn">Dinheiro</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <br>
+      <ion-button type="submit" style="width: 90%;">Buscar</ion-button>
+      <br>
+      <ion-button style="width: 90%;" (click)="divHomeShow()">Voltar</ion-button>
+    </form>
+  </div>
+
+  <div class="cssResult" id="divResult" [hidden]="true">
+    <ion-list>
+      <ion-item *ngFor = "let item of dados">
+        <ion-item>
+          <ion-label>
+            <h4>{{item?.object.nomeFantasia}}</h4>
+            <h4>{{item?.telefone}}</h4>
+          </ion-label>
+        </ion-item>
+        <li>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="buscar()" expand="block" style="width: 90%">Voltar</ion-button>
+  </div>
+
+  <div class="cssCadastro" id="divCadastro" [hidden]="true">
+    <form [formGroup]="formCadastro" (ngSubmit)="salvar()">
+      <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input (click)="this.antNome=''" formControlName="bdNome">{{bdNome}}</ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Nome fantasia:</ion-label>
+        <ion-input (click)="this.antNomeFantasia=''" formControlName="bdNomeF">{{bdNomeF}}</ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Telefone:</ion-label>
+        <ion-input (click)="this.antTelefone=''" formControlName="bdFone">{{bdFone}}</ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Rua:</ion-label>
+        <ion-input (click)="this.antNomeRua=''" formControlName="bdRua">{{bdRua}}</ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Número:</ion-label>
+        <ion-input (click)="this.antNumeroEndereco=''" formControlName="bdNumero">{{bdNumero}}</ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Cidade:</ion-label>
+        <ion-input (click)="this.antCidade=''" formControlName="bdCidade">{{bdCidade}}</ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-list>
+          <ion-label>Formas de Pagamento:</ion-label>
+          <ion-item *ngFor="let item of bdPagto">
+            <ion-label>{{item.pagto}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <br>
+        <ion-item>
+        <ion-list>
+          <ion-label>Serviços:</ion-label>
+          <ion-item *ngFor="let servico of bdServ">
+            <ion-label>{{servico.serv}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="servico.isChecked"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <br><br>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" expand="block" style="width: 90%">Salvar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button style="width: 90%;" (click)="divHomeShow()">Voltar</ion-button>
+        </ion-col>
+      </ion-row>
+      <br><br>
+    </form>
+  </div>
+
 </ion-content>

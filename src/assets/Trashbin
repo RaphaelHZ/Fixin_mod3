@@ -1,0 +1,71 @@
+app.component.html
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Gerenciamento de cadastros</li>
+  </ol>
+</nav>
+<div class="container">
+  <div class="card list-cadastro">
+    <h5 class="card-header">Lista de cadastros</h5>
+    <div class="card-body">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Cpf</th>
+              <th scope="col">Nome Fantasia</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cadastro of cadastros">
+              <td>{{cadastro.cpf}}</td>
+              <td>{{cadastro.nomefantasia}}</td>
+              <td>{{cadastro.cidade}}</td>
+              <td>{{cadastro.fone}}</td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" (click)="editCadastro(cadastro)">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteCadastro(cadastro)">Deletar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+  <div class="card add-cadastro">
+      <h5 class="card-header">Adicionar/Atualizar cadastro</h5>
+      <div class="card-body">
+          <form id="add-form" (ngSubmit)="f.form.valid && saveCadastro(f)" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label for="model">Nome Fantasia</label>
+                <input type="text" [(ngModel)]="cadastro.nomefantasia" id="nomefantasia" name="nomefantasia" #nomefantasia="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && nomefantasia.invalid }" placeholder="Digite o Nome Fantasia">
+                <div *ngIf="f.submitted && nomefantasia.invalid" class="invalid-feedback">
+                    <div *ngIf="nomefantasia.errors?.required">Nome Fantasia é obrigatório</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cidade">Cidade</label>
+                <input type="text" [(ngModel)]="cadastro.cidade" id="cidade" name="cidade" #cidade="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cidade.invalid }" placeholder="Digite a cidade">
+                <div *ngIf="f.submitted && cidade.invalid" class="invalid-feedback">
+                    <div *ngIf="cidade.errors?.required">Cidade é obrigatória</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fone">Telefone</label>
+                <input type="number" [(ngModel)]="cadastro.fone" id="fone" name="fone" #fone="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && fone.invalid }" placeholder="Digite o Telefone">
+                <div *ngIf="f.submitted && fone.invalid" class="invalid-feedback">
+                    <div *ngIf="fone.errors?.required">Telefone é obrigatório</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-add-cadastro">Salvar</button>
+            <button type="reset" class="btn btn-secondary btn-add-cadastro" (click)="cleanForm(f)">Cancelar</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,29 @@
+<ion-select-option value="servacab">Acabamentos</ion-select-option>
+<ion-select-option value="servarqt">Arquiteto(a)</ion-select-option>
+<ion-select-option value="servautr">Automação Residencial</ion-select-option>
+<ion-select-option value="servazul">Azulejista</ion-select-option>
+<ion-select-option value="servcarp">Carpintaria</ion-select-option>
+<ion-select-option value="servdeco">Decoração</ion-select-option>
+<ion-select-option value="servelet">Elétrica</ion-select-option>
+<ion-select-option value="servenge">Engenheiro(a) Civil</ion-select-option>
+<ion-select-option value="servgess">Gesso e Dry Wall</ion-select-option>
+<ion-select-option value="servhidr">Hidráulica</ion-select-option>
+<ion-select-option value="servinfr">Infraestrutura</ion-select-option>
+<ion-select-option value="servjard">Jardinagem</ion-select-option>
+<ion-select-option value="servmarm">Marmoraria</ion-select-option>
+<ion-select-option value="servmovl">Movelaria</ion-select-option>
+<ion-select-option value="servpint">Pintura</ion-select-option>
+<ion-select-option value="servrevs">Revestimentos</ion-select-option>
+<ion-select-option value="servserr">Serralheria</ion-select-option>
+<ion-select-option value="servvidr">Vidraçaria</ion-select-option>
+
+<ion-select-option value="pagtocc">Cartão Crédito</ion-select-option>
+<ion-select-option value="pagtocd">Cartão Débito</ion-select-option>
+<ion-select-option value="pagtotr">Transferência</ion-select-option>
+<ion-select-option value="pagtocq">Cheque</ion-select-option>
+<ion-select-option value="pagtopx">PIX</ion-select-option>
+<ion-select-option value="pagtobt">Boleto</ion-select-option>
+<ion-select-option value="pagtodn">Dinheiro</ion-select-option>
+
+
+
