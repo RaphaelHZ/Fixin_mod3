@@ -102,19 +102,6 @@ export class HomePage implements OnInit {
 
 
   ngOnInit(){
-/*     this.formBusca = this.formBuilder.group({
-      local: ['Selecione'],
-      servico: ['Selecione'],
-      pagto: ['Selecione']
-    }),
-    this.formCadastro = this.formBuilder.group({
-      bdNome: "",
-      bdNomeF: "",
-      bdFone: "",
-      bdRua: "",
-      bdNumero: "",
-      bdCidade: ""
-    }) */
   }
 
   async login() {
@@ -124,13 +111,17 @@ export class HomePage implements OnInit {
     });
     await modal.present();
     modal.onWillDismiss().then((novoLogin: any) => {
+      this.nome = novoLogin.data.nome;
       this.cpf = novoLogin.data.cpf;
       this.id = novoLogin.data.id;
     });
   };
 
-  //Funções da tela de busca
-  async buscar() {
+  //Função da tela de busca
+  async btnBuscar() {
+    //SELECT * FROM tblAnun WHERE anuPreco BETWEEN menorPreco AND maiorPreco AND anuSerId = $; 
+    //acho que faz a chamada do sql da API e envia os 3 valores, na API q é montado o SQL
+    //depois trata o retorno aqui
     this.divResultShow();
     console.log(this.http.get('https://fixin-unifil.herokuapp.com/londrina')
       .toPromise()
@@ -155,19 +146,51 @@ export class HomePage implements OnInit {
     });   */
   }
 
-  //Funções da tela de cadastro
-  salvar(){
+  //Função para gerar o orçamento e ligar para o prestador
+  btnLigar(){
+    //INSERT INTO tblOrcam VALUES ($,$,$,$,$,1)
+    //INSERT INTO tblAval VALUES ($,$,$,$)
+    //Usar o número do contato para ligar para o prestador
+  }
+
+  //Funções da salvar os dados pessoais
+  btnSalvarUsu(){
+    //UPDATE tblUsu SET usuNome = $, usuEmail = $, usuCelular = $, usuCEP = $ WHERE usuId = $
     console.log(this.formCadastro);
     console.log(this.bdServ);
     console.log(this.bdPagto)
   }
 
+  //Função para ajustar valores do slider
+  btnPreco(){
+    //SELECT MIN(anuPreco) AS menorPreco FROM tblAnunc WHERE anuSerId = $;
+    //SELECT MAX(anuPreco) As maiorPreco FROM tblAnunc WHERE anuSerId = $;
+  }
+  
+  //Função para salvar os dados profissionais
+  btnSalvarPro(){
+    //INSERT INTO tblPrest VALUES ($,$,$,1)
+  }
+
+  //Função para salvar o anúncio
+  btnSalvarAnu(){
+    //INSERT INTO tblAnunc VALUES ($,$,$,$,$,$,1)
+  }
+
+  //Função para excluir o anúncio
+  btnExcluirAnu(){
+    //UPDATE tblAnunc SET anuStatus = 0, anuTimestamp = $ WHERE anuId = $
+  }
+
+  btnSalvarAva(){
+    //UPDATE tblAval SET avaNota = $, avaTimestamp = $ WHERE avaOrcId = $ 
+  }
 
   //Funções genéricas
 
   //Ainda em testes
   //Define se um cadastro será criado ou atualizado
-  saveCadastro(form: NgForm) {
+/*   saveCadastro(form: NgForm) {
     if (this.cadastro.cpf !== undefined) {
       this.cadastroService.updateCadastro(this.cadastro).subscribe(() => {
         this.cleanForm(form);
@@ -177,74 +200,108 @@ export class HomePage implements OnInit {
         this.cleanForm(form);
       });
     }
-  }
+  } */
 
   // Chama o serviço para obter todos os cadastros
-  getCadastros() {
+/*   getCadastros() {
     this.cadastroService.getCadastros().subscribe((cadastros: Cadastro[]) => {
       this.cadastros = cadastros;
     });
-  }
+  } */
 
   // deleta o cadastro
-  deleteCadastro(cadastro: Cadastro) {
+/*   deleteCadastro(cadastro: Cadastro) {
     this.cadastroService.deleteCadastro(cadastro).subscribe(() => {
       this.getCadastros();
     });
-  }
+  } */
 
   // copia os dados para ser editado.
-  editCadastro(cadastro: Cadastro) {
+/*   editCadastro(cadastro: Cadastro) {
     this.cadastro = { ...cadastro };
-  }
+  } */
 
   // limpa o formulario
-  cleanForm(form: NgForm) {
+/*   cleanForm(form: NgForm) {
     this.getCadastros();
     form.resetForm();
     this.cadastro = {} as Cadastro;
-  }
+  } */
 
 
   //Funções para alternar entre divs
+  divHide() {
+    document.getElementById("divHome").setAttribute("hidden",""); //esconde div Home
+    document.getElementById("divBusca").setAttribute("hidden",""); //esconde div Busca
+    document.getElementById("divResult").setAttribute("hidden",""); //esconde div Resultados
+    document.getElementById("divOrcam").setAttribute("hidden",""); //esconde div Orcamento
+    document.getElementById("divCadUsu").setAttribute("hidden",""); //esconde div Cadastro Usuario
+    document.getElementById("divMOrc").setAttribute("hidden",""); //esconde div Meus Orçamentos
+    document.getElementById("divAva").setAttribute("hidden",""); //esconde div Avaliaçao
+    document.getElementById("divCadPro").setAttribute("hidden",""); //esconde div Cadastro Profissional
+    document.getElementById("divAnu").setAttribute("hidden",""); //esconde div Meus Anuncios
+    document.getElementById("divCadAnu").setAttribute("hidden",""); //esconde div Cadastro Anuncio
+  }
+
   divHomeShow() {
-    document.getElementById("divCadastro").setAttribute("hidden",""); //esconde div cadastro
-    document.getElementById("divBusca").setAttribute("hidden",""); //esconde div busca
-    document.getElementById("divResult").setAttribute("hidden",""); //esconde div resultado
+    this.divHide();
     document.getElementById("divHome").removeAttribute("hidden"); //mostra div home
   }
 
-  divCadastroShow() {
-    document.getElementById("divHome").setAttribute("hidden",""); //esconde div home
-    document.getElementById("divBusca").setAttribute("hidden",""); //esconde div busca
-    document.getElementById("divResult").setAttribute("hidden",""); //esconde div resultado
-    document.getElementById("divCadastro").removeAttribute("hidden"); //mostra div cadastro
-  }
-
   divBuscaShow() {
-    document.getElementById("divHome").setAttribute("hidden",""); //esconde div home
-    document.getElementById("divCadastro").setAttribute("hidden",""); //esconde div cadastro
-    document.getElementById("divResult").setAttribute("hidden",""); //esconde div resultado
+    this.divHide();
     document.getElementById("divBusca").removeAttribute("hidden"); //mostra div busca
   }
 
   divResultShow() {
-    document.getElementById("divHome").setAttribute("hidden",""); //esconde div home
-    document.getElementById("divBusca").setAttribute("hidden",""); //esconde div busca
-    document.getElementById("divCadastro").setAttribute("hidden",""); //esconde div cadastro
+    this.divHide();
+    // SELECT * FROM tblAnunc WHERE anuSerId = $ AND 
+    /* CRIAR LISTA COM O RESULTADO DA CONSULTA NA TABELA tblAnunc */
     document.getElementById("divResult").removeAttribute("hidden"); //mostra div resultado
   }
-}
 
+  divOrcamShow() {
+    this.divHide();
+    /* VINCULAR DADOS DO REGISTRO DA TABELA tblAnunc AOS CAMPOS*/
+    document.getElementById("divOrcam").removeAttribute("hidden"); //mostra div Orcamento
+  }
 
-//LIXEIRA
-/*   locais: any = ["Rolandia","Londrina","Cambe","Ibipora","Maringa"];
-  servicos: any = ["servacab","servarqt","servautr","servazul","servcarp","servdeco",
-                   "servelet","servenge","servgess","servhidr","servinfr","servjard",
-                   "servmarm","servmovl","servpint","servrevs","servserr","servvidr",];
-  servicos: any = ["Acabamentos","Arquiteto(a)","Automação Residencial","Azulejista","Carpintaria",
-                  "Decoração","Elétrica","Engenheiro(a) Civil","Gesso e Dry Wall","Hidráulica",
-                  "Infraestrutura","Jardinagem","Marmoraria","Movelaria","Pintura",
-                  "Revestimentos","Serralheria","Vidraçaria"
-                  ];
-  pagtos: any = ["pagtocc","pagtocd","pagtotr","pagtocq","pagtopx","pagtobt","pagtodn"]; */   
+  divCadUsuShow() {
+    this.divHide();
+    /* CARREGAR DADOS DA TABELA tblUsu DO BD */
+    document.getElementById("divCadUsu").removeAttribute("hidden"); //mostra div Cadastro Usuario
+  }
+
+  divMOrcShow() {
+    this.divHide();
+    /* CARREGAR DADOS DOS ORCAMENTOS DO USUARIO DO BD (SELECT by ID)*/
+    document.getElementById("divMOrc").removeAttribute("hidden"); //mostra div Meus Orcamentos
+  }
+
+  divAvaShow() {
+    this.divHide();
+    /* CARREGAR DADOS DA TABELA tblAval DO ORCAMENTO DO BD */
+    /* SQL SELECT FROM tblAval WHERE avaOrcId = ? */
+    document.getElementById("divAva").removeAttribute("hidden"); //mostra div Avaliacao
+  }
+
+  divCadProShow() {
+    this.divHide();
+    /* CARREGAR DADOS PROFISSIONAIS DO USUARIO DO BD */
+    /* SQL SELECT FROM tblPrest WHERE preId = ? */
+    document.getElementById("divCadPro").removeAttribute("hidden"); //mostra div Cadastro Profissional
+  }
+
+  divAnuShow() {
+    this.divHide();
+    /* CARREGAR DADOS DOS ANUNCIOS DO USUARIO DO BD */
+    document.getElementById("divAnu").removeAttribute("hidden"); //mostra div Meus Anuncios
+  }
+
+  divCadAnuShow() {
+    this.divHide();
+    /* INICIA EM BRANCO */
+    document.getElementById("divCadAnu").removeAttribute("hidden"); //mostra div Cadastro Anuncio
+  }
+
+} 

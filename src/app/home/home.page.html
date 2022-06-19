@@ -17,12 +17,14 @@
     <br><br><br>
     <ion-button style="width: 90%;" (click)="divBuscaShow()">Encontrar Profissionais</ion-button>
     <br><br>
-    <ion-button style="width: 90%;" (click)="divCadastroShow()">Cadastrar meus serviços</ion-button>
+    <ion-button style="width: 90%;" (click)="divCadUsuShow()">Cadastrar meus serviços</ion-button>
   </div>
 
   <div class="cssBusca" id="divBusca" [hidden]="true">
-    <form [formGroup]="formBusca" (ngSubmit)="buscar()">
-      <br><br><br><br>
+    <form [formGroup]="formBusca" (ngSubmit)="btnBuscar()">
+      <br>
+      <ion-label>"BUSCAR"</ion-label>
+      <br><br><br>
       <ion-item>
         <ion-label>Serviço:</ion-label>
         <ion-select interface="popover" formControlName="servico" placeholder="Selecione">
@@ -73,27 +75,47 @@
       <br>
       <ion-button type="submit" style="width: 90%;">Buscar</ion-button>
       <br>
-      <ion-button style="width: 90%;" (click)="divHomeShow()">Voltar</ion-button>
+      <ion-button style="width: 90%;" (click)="buscar()">Voltar</ion-button>
     </form>
   </div>
 
   <div class="cssResult" id="divResult" [hidden]="true">
+    <br>
+    <ion-label>"RESULTADOS"</ion-label>
+    <br>  
     <ion-list>
       <ion-item *ngFor = "let item of dados">
         <ion-item>
           <ion-label>
             <h4>{{item?.object.nomeFantasia}}</h4>
             <h4>{{item?.telefone}}</h4>
+            <!-- TEM QUE REESCREVER PARA PUXAR DO BD -->
+            <!-- QUANDO CLICAR IR PARA divOrcam DO ITEM -->
           </ion-label>
         </ion-item>
         <li>
       </ion-item>
     </ion-list>
-    <ion-button (click)="buscar()" expand="block" style="width: 90%">Voltar</ion-button>
+    <ion-button style="width: 90%;" (click)="divOrcamShow()">FAZ DE CONTA</ion-button>
+    <br><br><br>
+    <ion-button (click)="divBuscaShow()" expand="block" style="width: 90%">Voltar</ion-button>
   </div>
 
-  <div class="cssCadastro" id="divCadastro" [hidden]="true">
-    <form [formGroup]="formCadastro" (ngSubmit)="salvar()">
+  <div class="cssOrcam" id="divOrcam" [hidden]="true">
+    <form [formGroup]="formOrcam" (ngSubmit)="btnLigar()">
+      <br>
+      <ion-label>"ORCAMENTO"</ion-label>
+      <br><br>
+      <!-- INCLUIR DADOS DO ANUNCIO ESCOLHIDO -->
+      <br>
+      <ion-button type="submit" style="width: 90%;">Ligar</ion-button>
+      <br><br><br>
+      <ion-button style="width: 90%;" (click)="divResultShow()">Resultados</ion-button>
+    </form>
+  </div>
+
+  <div class="cssCadUsu" id="divCadUsu" [hidden]="true">
+    <form [formGroup]="formCadastro" (ngSubmit)="btnSalvarUsu()">
       <ion-item>
         <ion-label position="floating">Nome:</ion-label>
         <ion-input (click)="this.antNome=''" formControlName="bdNome">{{bdNome}}</ion-input>
@@ -124,17 +146,7 @@
         <ion-input (click)="this.antCidade=''" formControlName="bdCidade">{{bdCidade}}</ion-input>
       </ion-item>
       <br>
-      <ion-item>
-        <ion-list>
-          <ion-label>Formas de Pagamento:</ion-label>
-          <ion-item *ngFor="let item of bdPagto">
-            <ion-label>{{item.pagto}}</ion-label>
-            <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
-          </ion-item>
-        </ion-list>
-      </ion-item>
-      <br>
-        <ion-item>
+<!--         <ion-item>
         <ion-list>
           <ion-label>Serviços:</ion-label>
           <ion-item *ngFor="let servico of bdServ">
@@ -142,8 +154,14 @@
             <ion-checkbox slot="end" [(ngModel)]="servico.isChecked"></ion-checkbox>
           </ion-item>
         </ion-list>
-      </ion-item>
+      </ion-item> -->
       <br><br>
+      <ion-row>
+        <ion-button style="width: 90%;" (click)="divMOrcShow()">Meus Orçmentos</ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-button style="width: 90%;" (click)="divCadProShow()">Cadastro Profissional</ion-button>
+      </ion-row>
       <ion-row>
         <ion-col>
           <ion-button type="submit" expand="block" style="width: 90%">Salvar</ion-button>
@@ -153,6 +171,64 @@
         </ion-col>
       </ion-row>
       <br><br>
+    </form>
+  </div>
+
+  <div class="cssMOrcam" id="divMOrcam" [hidden]="true">
+    <form [formGroup]="formMOrcam" (ngSubmit)="divCadAnuShow()">
+      <br>
+      <ion-label>"CADASTRO ANUNCIO"</ion-label>
+      <br><br><br>
+      <ion-button type="submit" style="width: 90%;">Adicionar Anuncio</ion-button>
+      <br>
+      <ion-button style="width: 90%;" (click)="divCadUsuShow()">Voltar</ion-button>
+    </form>
+  </div>
+
+  <div class="cssAva" id="divAva" [hidden]="true">
+    <form [formGroup]="formAva" (ngSubmit)="">
+      <br>
+      <ion-label>"CADASTRO ANUNCIO"</ion-label>
+      <br><br><br>
+      <ion-button type="submit" style="width: 90%;">Buscar</ion-button>
+      <br>
+      <ion-button style="width: 90%;" (click)="divMOrcShow()">Voltar</ion-button>
+    </form>
+  </div>
+
+  <div class="cssCadPro" id="divCadPro" [hidden]="true">
+    <form [formGroup]="formCadPro" (ngSubmit)="btnSalvarPro()">
+      <br>
+      <ion-label>"DADOS PROFISSIONAIS"</ion-label>
+      <br><br><br>
+      <ion-button type="submit" style="width: 90%;">Salvar</ion-button>
+      <br>
+      <ion-button style="width: 90%;" (click)="divCadUsuShow()">Voltar</ion-button>
+    </form>
+  </div>
+
+  <div class="cssAnu" id="divAnu" [hidden]="true">
+    <form [formGroup]="formAva" (ngSubmit)="divCadAnuShow()">
+      <br>
+      <ion-label>"CADASTRO ANUNCIO"</ion-label>
+      <br><br><br>
+      <ion-button type="submit" style="width: 90%;">Novo Anuncio</ion-button>
+      <br>
+      <br><br><!--  PARA CADA UM DA LISTA -->
+      <ion-button style="width: 90%;" (click)="btnExcluirAnu()">Excluir</ion-button>
+      <br>
+      <ion-button style="width: 90%;" (click)="divCadUsuShow()">Voltar</ion-button>
+    </form>
+  </div>
+
+  <div class="cssCadAnu" id="divCadAnu" [hidden]="true">
+    <form [formGroup]="formCadAnu" (ngSubmit)="btnSalvarAnu()">
+      <br>
+      <ion-label>"CADASTRO ANUNCIO"</ion-label>
+      <br><br><br>
+      <ion-button type="submit" style="width: 90%;">Salvar Anúncio</ion-button>
+      <br>
+      <ion-button style="width: 90%;" (click)="divAnuShow()">Voltar</ion-button>
     </form>
   </div>
 

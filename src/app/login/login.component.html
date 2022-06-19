@@ -9,14 +9,14 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="formLogin" (ngSubmit)="salvarLogin()" novalidate>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
     <ion-item>
-      <ion-label position="floating">CPF:</ion-label>
-      <ion-input formControlName="logCpf" type="number"></ion-input>
+      <ion-label position="floating">Nome:</ion-label>
+      <ion-input formControlName="entNome" (click)="this.antNome=''">{{antNome}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Senha:</ion-label>
-      <ion-input formControlName="logId"></ion-input>
+      <ion-label position="floating">CPF:</ion-label>
+      <ion-input formControlName="entCPF" type="number" (click)="this.antCpf=''">{{antCpf}}</ion-input>
     </ion-item>
     <ion-button type="submit" expand="block">Salvar</ion-button>
   </form>
